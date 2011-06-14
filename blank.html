@@ -1,0 +1,114 @@
+<html>
+ <head>
+  <title>Facebook Shell</title>
+  <style type="text/css">html { height: 100%; }body { background: #fff; font-size: 12px; font-family: monospace; height: 99%; margin:0px; padding: 0px; }form { padding: 0px; margin: 0px; }pre { font-size: 12px; }br { clear: both; }:focus { outline: 0; }input.cmdline { border: none; border: 0px; font-size: 12px; font-family: monospace; padding: 0px; margin:0px; width:100%; }table.inputtable { width:100%; vertical-align:top; }td.inputtd { width:100%; }#input {color: #3b5998; overflow: hidden; }
+  #authentication{ margin-left: 12px; margin-top: 12px; }
+  #shell{ margin-left: 12px; margin-top: 12px; }
+  #author{ margin-left: 12px; margin-top: 12px; }
+  .less { color: #3b5998; }
+  .info { color: #090; }
+  .opDiv {margin-left: 12px; margin-top: 5px; color: #3b5998;;}
+  table { padding: 0px; margin: 0px; border-collapse: collapse; border-spacing: 0px; }td { padding: 0px; margin: 0px; vertical-align: top; font-size: 12px; font-family: monospace; }.help td { padding-right: 25px; font-size: 12px; }div#prompt { display: inline; white-space:nowrap; padding:0px; margin:0px; }img { border: none; }</style>
+
+  <style>
+  div {
+	color: #3b5998;
+    vertical-align: 50%;
+    text-align: left;
+    font-family: monospace;
+    font-size: 12;
+  }
+  .PRESERVERD{  
+  	color: #cccccc;
+    text-align: left;
+    font-family: monospace;
+    font-size: 12;
+  }
+  .CMDIP{
+	color: blue;
+    font-family: monospace;
+    font-size: 12;
+  }
+  .CMDOP_HEAD{
+	color: blue;
+    font-family: monospace;
+    font-size: 12;
+  }
+  .CMDOP{
+	color: green;
+    font-family: monospace;
+    font-size: 12;
+  }
+  .ERROR{
+  	color: red;
+    font-family: monospace;
+    font-size: 12;
+  }
+  .CMDLINE{
+  
+ 	border: none; border: 0px; 
+  	font-size: 12px; 
+  	font-family: monospace; 
+  	padding: 0px; 
+  	margin:0px; 
+  	width:100%;
+  }
+
+
+
+  </style>
+  
+
+ </head>
+
+<body id="body" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0); " onkeydown="enterCmd();">
+
+<br/>
+  <div id="title" style="color: #3b5998;text-align: center">Facebuk Shell&trade;</div>
+  <div id="author">Developed by: <span class=CMDIP>Heera </span>(heera271213@gmail.com)</div>
+  <br/>
+  <div id="authentication" >
+    <div id="fb-root"></div>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jq-overlay.js"></script>
+    <script src="http://connect.facebook.net/en_US/all.js"></script>
+   	<script src="interpreter.js"></script>  
+	<script src="fbshell.js"></script>
+	<script src="jquery.tools.min.js"></script>    
+
+
+	
+		<div>App Id:<span class="CMDIP" style="text-decoration : underline" id="appIdip" onclick="setApp();">120496151366418</span></div>
+		<div>Client Secret Id:<span class="CMDIP" style="text-decoration : underline" id="clientsecret" onclick="getSecret();">null</span></div>
+      <div>Login to get Access Token(appended in redirected url): <a id="ll" target="_blank" style="color: blue; font=bold" href="https://www.facebook.com/dialog/oauth?client_id=120496151366418&redirect_uri=http://www.facebook.com/connect/login_success.html&response_type=token">Login</a>
+        <br/>
+      	<div id="token">Your Access Code:
+    	<span class="CMDIP" style="text-decoration : underline" id="tokenip" onclick="gettoken();";>unknown</span>
+    	</div>
+		<br/>
+		<div id="userDiv"></div>
+      </div>
+        
+  </div>
+  <div id="shell">  
+	<div id="output"></div>
+    <br/>
+	<div id="input" style="display: block; ">
+	<form name="f" onsubmit="return false;" class="cmdline" action="">
+		<table class="inputtable"><tbody><tr>
+			<td>
+			<div id="prompt" class="less">$fb&gt;&nbsp;</div>
+			</td>
+			<td class="inputtd">
+ 	  <input class="CMDLINE" id ="cmdL" type="textfield" onkeydown="process(event)" autocomplete="off"/>
+ 	  </td></tr></tbody>
+			</table>
+	</form>
+	</div>
+	</div>	
+  <script>
+     document.getElementById("cmdL").focus();     
+  </script>
+ </body>
+</html>
+

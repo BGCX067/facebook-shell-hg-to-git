@@ -1,0 +1,3 @@
+function abcd(){
+	return "OK";
+}
